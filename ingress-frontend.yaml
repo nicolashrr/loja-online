@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: frontend-external
+  namespace: projeto
+spec:
+  rules:
+  - host: loja-online.34.72.252.203.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: frontend-external
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
